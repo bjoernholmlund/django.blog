@@ -17,9 +17,11 @@ Including another URLconf
 
 from django.contrib import admin
 from django.urls import path
-from blog.views import my_blog
+from blog import views as blog_views
+from django.shortcuts import redirect
 
 urlpatterns = [
-     path('blog/', my_blog, name='blog'),
-    path("admin/", admin.site.urls),
+    path('', lambda request: redirect('blog')),
+    path('blog/', blog_views.my_blog, name='blog'),  # Blog-vyn
+    path('admin/', admin.site.urls),  # Admin-vyn
 ]
